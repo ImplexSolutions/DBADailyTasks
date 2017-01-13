@@ -83,7 +83,7 @@ Declare @html varchar(max)
 			+ '</table>'
  
  EXEC msdb.dbo.sp_send_dbmail
- 	   @profile_name = 'DBA Job Alerts Profile',				
+ 	   @profile_name = 'DBA Profile',				
  	   @recipients = 'myEmail@implexsolutions.com', 	
   	   @importance =  'HIGH',
  	   @sensitivity='Confidential',	        
