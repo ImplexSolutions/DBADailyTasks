@@ -39,8 +39,8 @@ case jh.run_status	when 0 then 'Failed'
 								when 2 then 'Retry'
 								when 3 then 'Canceled'
 								else 'No History'
-			end last_run_status, DBA.dbo.[MinutesToDuration](run_duration, 1) last_run_duraiton, [DBA].[dbo].FormatRunDate(xpr.last_run_date, xpr.last_run_time) last_run, 
-[DBA].[dbo].FormatRunDate(xpr.next_run_date, xpr.next_run_time) next_run,
+			end last_run_status, dbo.[MinutesToDuration](run_duration, 1) last_run_duraiton, [dbo].FormatRunDate(xpr.last_run_date, xpr.last_run_time) last_run, 
+[dbo].FormatRunDate(xpr.next_run_date, xpr.next_run_time) next_run,
 case job_state
 when 1	then 'Executing'
 when 2	then 'Waiting for thread'
@@ -49,7 +49,7 @@ when 4	then 'Idle'
 when 5	then 'Suspended'
 when 7	then 'Completing'
 else cast(job_state as varchar(10)) end job_state, js.step_name Current_step, current_retry_attempt step_retry, 
-			ja.start_execution_date, DBA.dbo.[MinutesToDuration](datediff(minute, start_execution_date, getdate()), 0) elapsedTime
+			ja.start_execution_date, dbo.[MinutesToDuration](datediff(minute, start_execution_date, getdate()), 0) elapsedTime
 from @xp_results xpr
 inner join msdb.dbo.sysjobs j on xpr.job_id = j.job_id
 left join msdb.dbo.sysjobsteps js on xpr.current_step = js.step_id and js.job_id = j.job_id 
